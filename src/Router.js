@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {Icon} from 'native-base'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Authenticate Stack
 import SignIn from './screens/SignIn';
@@ -13,6 +14,7 @@ import Home from './screens/Home';
 import Category from './screens/Category';
 import Random from './screens/Random';
 import Popular from './screens/Popular';
+import Detail from './screens/Detail';
 
 const AuthStack = createBottomTabNavigator(
     {
@@ -43,34 +45,49 @@ const AuthStack = createBottomTabNavigator(
     },
 );
 
+const HomeStack = createStackNavigator({
+    Home: {
+        screen: Home,
+        navigationOptions: {
+            title: 'Yeniler'
+        }
+    },
+    Detail: {
+        screen: Detail,
+        navigationOptions: {
+            title: 'Detail'
+        }
+    }
+});
+
 const AppStack = createBottomTabNavigator(
   {
     Home: {
-      screen: Home,
+      screen: HomeStack,
       navigationOptions: {
         tabBarLabel: 'Yeniler',
-          tabBarIcon: ({tintColor}) => (<Icon name="ios-wifi" size={22} color={tintColor}/>),
+          tabBarIcon: ({tintColor}) => (<Ionicons name="ios-wifi" size={22} color={tintColor}/>),
       },
     },
     Category: {
       screen: Category,
       navigationOptions: {
         tabBarLabel: 'Kategoriler',
-          tabBarIcon: ({tintColor}) => (<Icon name="ios-copy" size={18} color={tintColor}/>),
+          tabBarIcon: ({tintColor}) => (<Ionicons name="ios-copy" size={18} color={tintColor}/>),
       },
     },
     Random: {
       screen: Random,
       navigationOptions: {
         tabBarLabel: 'Rastgele',
-          tabBarIcon: ({tintColor}) => (<Icon name="ios-shuffle" size={22} color={tintColor}/>),
+          tabBarIcon: ({tintColor}) => (<Ionicons name="ios-shuffle" size={22} color={tintColor}/>),
       },
     },
     Popular: {
       screen: Popular,
       navigationOptions: {
         tabBarLabel: 'Populer',
-          tabBarIcon: ({tintColor}) => (<Icon name="ios-star" size={22} color={tintColor}/>),
+          tabBarIcon: ({tintColor}) => (<Ionicons name="ios-star" size={22} color={tintColor}/>),
       },
     },
   },
@@ -79,4 +96,4 @@ const AppStack = createBottomTabNavigator(
   },
 );
 
-export default createAppContainer(AuthStack);
+export default createAppContainer(AppStack);
