@@ -1,58 +1,30 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, SafeAreaView, Button} from 'react-native';
-
-import axios from 'axios';
-import {API_BASE} from '../../constants';
+import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 
 export default class Detail extends Component {
-    state= {
-        title: '',
-        favCount: '',
-        displayCount: '',
-        date: '',
-        categoryName: '',
-        loading: true
+
+    static navigationOptions = ({navigation}) => {
+
+        const article = navigation.getParam('article');
+        return {
+            title: article.title,
+            content: article.content,
+            keywords: article.keywords,
+            source: article.source,
+            user: article.user,
+            date: article.date,
+            favCount: article.favCount,
+            displayCount: article.displayCount,
+            categoryTitle: article.category.title,
+            categoryContent: article.category.title,
+            categoryDate: article.category.date,
+        }
     };
-
-    componentDidMount() {
-        this.getArticle();
-    };
-
-    getArticle = () => {
-
-        this.setState({
-            loading: true
-        });
-
-        axios
-            .get(`${API_BASE}/api/articles`)
-            .then(article => article.data[0])
-            .then(article => {
-                this.setState({
-                    title: article.title,
-                    favCount: article.favCount,
-                    displayCount: article.displayCount,
-                    date: article.date,
-                    categoryName: article.category.title,
-                    loading: false
-                })
-            });
-    };
-
 
     render() {
-
-        const {title, favCount, displayCount, date, categoryName, loading} = this.state;
-
         return (
             <SafeAreaView>
-                <View>
-                    {
-                        loading ? <Text>Loading..</Text> : <Text>{title} {favCount} {displayCount} {date} { categoryName}</Text>
-                    }
-                    <Button title={"get article"} onPress={this.getArticle}/>
-
-                </View>
+                <Text>Detail</Text>
             </SafeAreaView>
         );
     }

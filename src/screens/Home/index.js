@@ -1,21 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, SafeAreaView, FlatList, Button} from 'react-native';
+import {StyleSheet, View, SafeAreaView, FlatList, Button, Text} from 'react-native';
 
-import HomeArticleList from './HomeArticleList';
-import {Header, Content, List, Body, Title} from 'native-base';
+import ArticlesList from '../../components/ArticlesList';
 
 export default class Home extends Component {
     render() {
         return (
-            <Content>
-                <List>
-                    <FlatList
-                        data={[{key: 'a'}, {key: 'b'}]}
-                        renderItem={({item}) => <HomeArticleList item={item}/>}
-                    />
-                </List>
-                <Button title={'go to detail'} onPress={() => this.props.navigation.navigate('Detail')}/>
-            </Content>
+            <SafeAreaView>
+                <ArticlesList navigation={this.props.navigation}/>
+            </SafeAreaView>
         );
     }
 }
