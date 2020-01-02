@@ -16,6 +16,7 @@ import Random from './screens/Random';
 import Popular from './screens/Popular';
 import Detail from './screens/Detail';
 import DrawerButton from './components/DrawerButton';
+import DrawerMenu from './components/DrawerMenu';
 
 const AuthStack = createBottomTabNavigator(
     {
@@ -122,35 +123,44 @@ const TabNavigator = createBottomTabNavigator(
     }
 );
 
+// const DrawerNavigator = createDrawerNavigator({
+//         Home: {
+//             screen: TabNavigator,
+//             navigationOptions: {
+//                 drawerLabel: 'Yeniler',
+//                 drawerIcon: ({tintColor}) => (<Ionicons name="ios-wifi" size={18} color={tintColor}/>),
+//             },
+//         },
+//         Category: {
+//             screen: TabNavigator,
+//             navigationOptions: {
+//                 drawerLabel: 'Kategoriler',
+//                 drawerIcon: ({tintColor}) => (<Ionicons name="ios-copy" size={18} color={tintColor}/>),
+//             },
+//         },
+//         Random: {
+//             screen: TabNavigator,
+//             navigationOptions: {
+//                 drawerLabel: 'Rastgele',
+//                 drawerIcon: ({tintColor}) => (<Ionicons name="ios-shuffle" size={18} color={tintColor}/>),
+//             },
+//         },
+//         Popular: {
+//             screen: TabNavigator,
+//             navigationOptions: {
+//                 drawerLabel: 'Populer',
+//                 drawerIcon: ({tintColor}) => (<Ionicons name="ios-star" size={18} color={tintColor}/>),
+//             },
+//         },
+//     });
+
 const DrawerNavigator = createDrawerNavigator({
-        Home: {
-            screen: TabNavigator,
-            navigationOptions: {
-                drawerLabel: 'Yeniler',
-                drawerIcon: ({tintColor}) => (<Ionicons name="ios-wifi" size={18} color={tintColor}/>),
-            },
-        },
-        Category: {
-            screen: TabNavigator,
-            navigationOptions: {
-                drawerLabel: 'Kategoriler',
-                drawerIcon: ({tintColor}) => (<Ionicons name="ios-copy" size={18} color={tintColor}/>),
-            },
-        },
-        Random: {
-            screen: TabNavigator,
-            navigationOptions: {
-                drawerLabel: 'Rastgele',
-                drawerIcon: ({tintColor}) => (<Ionicons name="ios-shuffle" size={18} color={tintColor}/>),
-            },
-        },
-        Popular: {
-            screen: TabNavigator,
-            navigationOptions: {
-                drawerLabel: 'Populer',
-                drawerIcon: ({tintColor}) => (<Ionicons name="ios-star" size={18} color={tintColor}/>),
-            },
-        },
-    });
+    TabNavigator: {
+        screen: TabNavigator
+    },
+}, {
+    contentComponent: DrawerMenu
+});
+
 
 export default createAppContainer(DrawerNavigator);
