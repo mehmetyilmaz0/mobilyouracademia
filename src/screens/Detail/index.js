@@ -15,6 +15,7 @@ export default class Detail extends Component {
             date: article.date,
             favCount: article.favCount,
             displayCount: article.displayCount,
+            imageUrl: article.imageUrl,
             categoryTitle: article.category.title,
             categoryContent: article.category.title,
             categoryDate: article.category.date,

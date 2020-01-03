@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, FlatList, Image, TouchableOpacity, TextInput, ActivityIndicator} from 'react-native';
+import {StyleSheet, FlatList, Image, TouchableOpacity, TextInput, ActivityIndicator, ScrollView} from 'react-native';
 import axios from 'axios';
 import { API_BASE } from '../constants';
+import {View, Card, Text} from 'react-native-ui-lib';
 
 
 export default class ArticlesList extends Component {
@@ -38,19 +39,32 @@ export default class ArticlesList extends Component {
                 refreshing={this.state._refreshing}
                 onRefresh={this._onRefresh}
             />
+
         );
     }
 
 
     _renderArticlesItem = ({item, index}) => {
         return(
-            <TouchableOpacity
-                onPress={() => {this._gotoDetail(item)}}
-                style={styles.itemContainer}>
-                <View style={styles.textContainer}>
-                    <Text>{item.title}</Text>
-                </View>
-            </TouchableOpacity>
+            // <TouchableOpacity
+            //     onPress={() => {this._gotoDetail(item)}}
+            //     style={styles.itemContainer}>
+                    <ScrollView>
+                        <View>
+                            <Card row height={120} style={{marginBottom: 10}} onPress={() => {this._gotoDetail(item)}} br10>
+                                <View padding-20 flex>
+                                    <Text text70 dark10>
+                                        {item.title}
+                                    </Text>
+                                    <Text text90 dark50 padding-40>
+                                        {item.content.substring(0, 100)}...
+                                    </Text>
+                                </View>
+                                <Card.Image width={115} imageSource={{ uri: item.imageUrl }}/>
+                            </Card>
+                        </View>
+                    </ScrollView>
+            // </TouchableOpacity>
         )
     };
 
